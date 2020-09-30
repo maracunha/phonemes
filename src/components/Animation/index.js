@@ -1,18 +1,23 @@
 import React from 'react';
-import "@lottiefiles/lottie-player";
+import Lottie from 'react-lottie';
+import heart from '../../assets/animations/love-hearts.json'
 
 
 function Animation () {
 
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: heart,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  }
+
   return (
-    <lottie-player
-    autoplay
-    loop
-    mode="normal"
-    src="https://assets1.lottiefiles.com/private_files/lf30_T5tVEx.json"
-    // style={{width: '45rem', height: '45rem',  alignSelf: 'center'}}
-    >
-    </lottie-player>
+    <Lottie 
+      options={defaultOptions}
+    />
   )
 }
 
