@@ -51,13 +51,7 @@ const handleNext = () => {
   if (position === matrix.length -1) return null
   
   setPosition(position + 1)
-
-  //TODO dizer que chegou ao final da lista.
 }
-
-console.log({position, })
-console.log('matrix[position]', matrix[position])
-console.log('matrix.length', matrix.length)
 
 const handlePrevious = () => {
   if (position >= 1) setPosition(position -1)
