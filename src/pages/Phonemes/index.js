@@ -4,10 +4,12 @@ import { Redirect } from 'react-router-dom';
 import phonemeS from '../../assets/images/phoneme-S.png';
 import backward from '../../assets/images/icons/caret-left-solid.svg';
 import forward from '../../assets/images/icons/caret-forward-solid.svg';
+import unicorn from '../../assets/images/icons/unicorn.svg'
 import './style.css';
 
 function Phonemes() {
 const [positions, setPositions] = useState([0]);
+const [isHidden, setIsHidden] = useState(false)
 
 const matrix = [
   [0, 0],
@@ -55,6 +57,7 @@ const randomPositionIndex = () => {
 
 const handleNext = () => {
   setPositions([...positions, randomPositionIndex()]);
+  setIsHidden(false)
 };
 
 const handlePrevious = () => {
@@ -66,6 +69,14 @@ useEffect(() => {
   document.getElementsByClassName('image')[0].style.top = `${matrix[positions[positions.length -1]][0]}px`;
 }, [matrix, positions]);
 
+const showUnicron = () => {
+  if (positions.length %2 === 0) return true
+  return false
+}
+
+// console.log('ishidden', isHidden)
+console.log('showUnicron', showUnicron)
+
   return (
     <div id="phonemes">
       { positions.length === 35 && <Redirect to="/success" /> }
@@ -75,6 +86,11 @@ useEffect(() => {
           <div className="viewport">
             <img className="image" src={phonemeS} alt="phonemes-S"/>
           </div>
+          {showUnicron() &&
+            <div className="viewport unicorn" onClick={() => setIsHidden(!isHidden)}>
+              <img src={unicorn} alt="unicornio" style={{width: '100%', display: isHidden ? 'none' : null}}/>
+            </div>
+          }
         </div>
         <div className="buttons-container">
           <button className="backward" disabled={positions.length === 1} onClick={handlePrevious}>
