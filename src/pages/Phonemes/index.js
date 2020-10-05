@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import phonemeS from '../../assets/images/phoneme-S.png';
@@ -6,7 +6,7 @@ import backIcon from '../../assets/images/icons/back.svg';
 import './style.css';
 
 function Phonemes() {
-const [position, setPosition] = useState(0)
+const [positions, setPositions] = useState([0])
 
 const matrix = [
   [0, 0],
@@ -44,39 +44,43 @@ const matrix = [
   [-1654, -563],
   [-1654, -842],
   [-1654, -1119],
-  [],
 ]
 
+const randomPositionIndex = () => {
+  const number = Math.floor(Math.random() * matrix.length)
+  if (positions.indexOf(number) !== -1) return randomPositionIndex()
+  return number
+} 
+
 const handleNext = () => {
-  if (position === matrix.length -1) return null
-  
-  setPosition(position + 1)
+  setPositions([...positions, randomPositionIndex()])
 }
 
 const handlePrevious = () => {
-  if (position >= 1) setPosition(position -1)
+  setPositions(positions.slice(0, positions.length -1))
 }
+console.log('positions', positions)
+
+useEffect(() => {
+  document.getElementsByClassName('image')[0].style.left = `${matrix[positions[positions.length -1]][1]}px`
+  document.getElementsByClassName('image')[0].style.top = `${matrix[positions[positions.length -1]][0]}px`
+}, [matrix, positions])
 
   return (
     <div id="phonemes">
-      { position === matrix.length -1 && <Redirect to="/success" /> }
+      { positions.length === 35 && <Redirect to="/success" /> }
       <div id="page-phonemes-content" className="container">
         <h1>Fonema /s/ <span role="img" aria-label="coração">❤️</span></h1>
         <div className="viewport-content">
           <div className="viewport">
-            <img style={{
-              display: 'block',
-              position: 'absolute',
-              left: `${matrix[position][1]}px`,
-              top: `${matrix[position][0]}px`,
-            }} src={phonemeS} alt="phonemes-S"/>
+            <img className="image" src={phonemeS} alt="phonemes-S"/>
           </div>
         </div>
         <div className="buttons-container">
-          <button disabled={position === 0} onClick={handlePrevious}>
+          <button disabled={positions.length === 1} onClick={handlePrevious}>
             <img src={backIcon} alt="anterior"/>
           </button>
-          <button disabled={position === matrix.length} onClick={handleNext}>Próximo</button>
+          <button disabled={positions === matrix.length} onClick={handleNext}>Próximo</button>
         </div>
       </div>
     </div>
