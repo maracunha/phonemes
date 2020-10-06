@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import phonemeS from '../../assets/images/phoneme-S.png';
-import backIcon from '../../assets/images/icons/back.svg';
+import backward from '../../assets/images/icons/caret-left-solid.svg';
+import forward from '../../assets/images/icons/caret-forward-solid.svg';
 import './style.css';
 
 function Phonemes() {
-const [positions, setPositions] = useState([0])
+const [positions, setPositions] = useState([0]);
 
 const matrix = [
   [0, 0],
@@ -44,27 +45,26 @@ const matrix = [
   [-1654, -563],
   [-1654, -842],
   [-1654, -1119],
-]
+];
 
 const randomPositionIndex = () => {
-  const number = Math.floor(Math.random() * matrix.length)
-  if (positions.indexOf(number) !== -1) return randomPositionIndex()
+  const number = Math.floor(Math.random() * matrix.length);
+  if (positions.indexOf(number) !== -1) return randomPositionIndex();
   return number
-} 
+};
 
 const handleNext = () => {
-  setPositions([...positions, randomPositionIndex()])
-}
+  setPositions([...positions, randomPositionIndex()]);
+};
 
 const handlePrevious = () => {
-  setPositions(positions.slice(0, positions.length -1))
-}
-console.log('positions', positions)
+  setPositions(positions.slice(0, positions.length -1));
+};
 
 useEffect(() => {
-  document.getElementsByClassName('image')[0].style.left = `${matrix[positions[positions.length -1]][1]}px`
-  document.getElementsByClassName('image')[0].style.top = `${matrix[positions[positions.length -1]][0]}px`
-}, [matrix, positions])
+  document.getElementsByClassName('image')[0].style.left = `${matrix[positions[positions.length -1]][1]}px`;
+  document.getElementsByClassName('image')[0].style.top = `${matrix[positions[positions.length -1]][0]}px`;
+}, [matrix, positions]);
 
   return (
     <div id="phonemes">
@@ -77,10 +77,12 @@ useEffect(() => {
           </div>
         </div>
         <div className="buttons-container">
-          <button disabled={positions.length === 1} onClick={handlePrevious}>
-            <img src={backIcon} alt="anterior"/>
+          <button className="backward" disabled={positions.length === 1} onClick={handlePrevious}>
+            <img src={backward} alt="anterior"/>
           </button>
-          <button disabled={positions === matrix.length} onClick={handleNext}>Próximo</button>
+          <button className="forward" disabled={positions === matrix.length} onClick={handleNext}>
+            <img src={forward} alt="próximo"/>
+          </button>
         </div>
       </div>
     </div>

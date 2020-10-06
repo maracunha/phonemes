@@ -59,6 +59,14 @@
 }
 
 .buttons-container button:last-child {
+  background: var(--color-secondary);
+}
+
+.buttons-container .backward:hover {
+  background: var(--color-primary-dark);
+}
+
+.buttons-container .forward:hover {
   background: var(--color-secondary-dark);
 }
 
@@ -67,6 +75,11 @@
   position: absolute;
   left: 0;
   top: 0;
+}
+
+button img {
+  height: 90%;
+  width: 50%;
 }
 
 @media (min-width: 760px) {
