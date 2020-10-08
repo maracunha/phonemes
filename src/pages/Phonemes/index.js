@@ -69,13 +69,7 @@ useEffect(() => {
   document.getElementsByClassName('image')[0].style.top = `${matrix[positions[positions.length -1]][0]}px`;
 }, [matrix, positions]);
 
-const showUnicron = () => {
-  if (positions.length %2 === 0) return true
-  return false
-}
-
-// console.log('ishidden', isHidden)
-console.log('showUnicron', showUnicron)
+const showUnicorn = positions.length %2 === 0 ? true : false
 
   return (
     <div id="phonemes">
@@ -86,9 +80,9 @@ console.log('showUnicron', showUnicron)
           <div className="viewport">
             <img className="image" src={phonemeS} alt="phonemes-S"/>
           </div>
-          {showUnicron() &&
+          {showUnicorn &&
             <div className="viewport unicorn" onClick={() => setIsHidden(!isHidden)}>
-              <img src={unicorn} alt="unicornio" style={{width: '100%', display: isHidden ? 'none' : null}}/>
+              <img src={unicorn} alt="unicórnio" style={{width: '100%', display: isHidden ? 'none' : null}}/>
             </div>
           }
         </div>

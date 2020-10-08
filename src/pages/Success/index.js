@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Animation from '../../components/Animation';
-import unicorn from '../../assets/images/icons/unicorn.svg'
+import unicorn from '../../assets/images/icons/unicorn-happy.svg'
 
 import './styles.css';
 
@@ -13,7 +12,6 @@ function Success() {
           Voltar
         </Link>
       <img src={unicorn} alt="unicorn"/>
-      {/* <Animation /> */}
     </div>
   );
 }
