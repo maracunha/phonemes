@@ -53,17 +53,20 @@ function PhonemeImage1({ position, onHandleMatrixLength }) {
     height: 274px;
   `
 
-  const Image = styled.img`
+  const StyledImage = styled.img`
     display: block;
     position: absolute;
-    left: ${matrix[position][1]}px;
-    top: ${matrix[position][0]}px;
+    left: ${[props => props.left]}px;
+    top: ${props => props.top}px;
   `
+
+  const left = matrix[position][1];
+  const top = matrix[position][0];
 
 return (
   <div  className="viewport-content">
     <ViewPort className="viewport">
-      <Image className="image" src={image1} alt="imagens"/> 
+      <StyledImage left={left} top={top} className="image" src={image1} alt="imagens"/> 
     </ViewPort>
   </div>
   );
