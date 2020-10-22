@@ -7,11 +7,29 @@ function Landing() {
 
   return(
     <div id='landing'>
-      <Link className="button" to="phonemes">
-        Fonemas /s/ 1
+      <Link className="button" to='exercises'>
+        EXERCÍCIOS
       </Link>
-      <Link className="button" to="phonemes2">
-        Fonemas /s/ 2
+      <Link 
+        className="button" 
+        to={{
+          pathname: "/phonemes",
+          state: {
+            image: 'image1',
+          }
+        }}
+      >
+        FIGURAS 1
+      </Link>
+      <Link className="button" 
+        to={{
+          pathname: "/phonemes",
+          state: {
+            image: 'image2',
+          }
+        }}
+      >
+        FIGURAS 2
       </Link>
     </div>
   );
