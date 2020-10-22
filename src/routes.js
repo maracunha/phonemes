@@ -10,8 +10,7 @@ function Routes() {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Landing} />
-      <Route path="/phonemes" render={() => <Phonemes image={'image1'} />} />
-      <Route path="/phonemes2" render={() => <Phonemes image={'image2'} />} />
+      <Route path="/phonemes" component={Phonemes} />
       <Route path="/success" component={Success} />
     </BrowserRouter>
   );
