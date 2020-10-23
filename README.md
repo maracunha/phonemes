@@ -3,7 +3,7 @@
 </h1>
 
 ## Project
-You can see the live project [Phonemes](https://phonemes.vercel.app/)
+[View the project](https://phonemes.vercel.app/)
 
 <p align="center">
   <img alt="Phonemes" src=".github/phoneme.png" width="50%" >
